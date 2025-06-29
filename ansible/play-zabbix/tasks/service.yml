@@ -1,0 +1,6 @@
+- name: Ensure Zabbix agent service is enabled and running
+  service:
+    name: "{{ zabbix_service_name }}"
+    enabled: true
+    state: started
+

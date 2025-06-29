@@ -1,0 +1,22 @@
+- hosts: all
+  gather_facts: true
+  vars:
+    # Adjust this path to where you want reports stored on your Ansible server
+    report_dir: /home/healthcheck/abdulaziz/ansible/play-hostinfo/hosts-data
+
+  tasks:
+    - name: Ensure local report directory exists
+      # `delegate_to: localhost` means this runs on the control node
+      file:
+        path: "{{ report_dir }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+
+    - name: Generate OS & CPU report locally for each host
+      template:
+        src: os_report.j2
+        dest: "{{ report_dir }}/{{ inventory_hostname }}_report.txt"
+      delegate_to: localhost
+

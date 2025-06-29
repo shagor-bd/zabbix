@@ -1,0 +1,9 @@
+- name: Check if Zabbix agent or agent2 is installed
+  shell: "rpm -q zabbix-agent || rpm -q zabbix-agent2"
+  register: check_result
+  ignore_errors: true
+  changed_when: false
+
+- name: Set installation fact
+  set_fact:
+    zabbix_installed: "{{ (check_result.rc | default(1)) == 0 }}"

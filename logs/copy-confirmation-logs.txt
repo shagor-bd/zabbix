@@ -1,0 +1,23 @@
+10.2.68.251 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm
+
+10.2.68.250 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm
+
+10.2.68.247 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm
+
+10.2.68.246 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm
+
+10.2.68.254 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm
+
+10.2.68.252 | CHANGED | rc=0 >>
+/tmp/zabbix-agent2-7.2.7-release1.el8.x86_64.rpm
+/tmp/zabbix-agent2-7.2.7-release1.el9.x86_64.rpm

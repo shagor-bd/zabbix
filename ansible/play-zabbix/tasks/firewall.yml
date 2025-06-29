@@ -1,0 +1,14 @@
+- name: Check firewalld status
+  command: systemctl is-active firewalld
+  register: firewalld_status
+  ignore_errors: true
+  changed_when: false
+
+- name: Open firewall port 10050 if firewalld is active
+  firewalld:
+    port: "{{ listen_port }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: true
+  when: firewalld_status.stdout is defined and firewalld_status.stdout == 'active'
+

@@ -1,0 +1,13 @@
+# List one or multiple files located on the bastion
+files_to_copy:
+  - "zabbix-agent2-7.2.7-release1.el8.x86_64.rpm"
+  - "zabbix-agent2-7.2.7-release1.el9.x86_64.rpm"
+
+# Destination path options:
+#destination_path: "~"                    # User home directory
+destination_path: "/tmp"               # Alternative: temp directory
+# destination_path: "/opt/zabbix"        # Alternative: dedicated directory
+
+# Optional settings
+verify_rpm_integrity: false             # Set to true to verify RPM signatures
+create_destination_dir: true             # Create destination if it doesn't exist

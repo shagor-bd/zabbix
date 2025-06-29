@@ -1,0 +1,11 @@
+- name: Install Zabbix agent RPM
+  yum:
+    name: "{{ remote_rpm }}"
+    state: present
+    disable_gpg_check: true
+
+- name: Remove RPM file after installation
+  file:
+    path: "{{ remote_rpm }}"
+    state: absent
+

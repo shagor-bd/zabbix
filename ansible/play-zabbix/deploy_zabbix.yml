@@ -1,0 +1,22 @@
+- name: Deploy Zabbix Agent
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars_files:
+    - misc/zabbix_vars.yml
+
+  vars:
+    remote_rpm: "/tmp/zabbix-agent2-7.2.7-release1.el{{ ansible_distribution_major_version }}.x86_64.rpm"
+    zabbix_service_name: "{{ 'zabbix-agent2' if not zabbix_installed else 'zabbix-agent' }}"
+
+  tasks:
+    - import_tasks: tasks/check_installation.yml
+    - import_tasks: tasks/install_agent.yml
+      when: not zabbix_installed
+    - import_tasks: tasks/firewall.yml
+    - import_tasks: tasks/configure_agent.yml
+    - import_tasks: tasks/service.yml
+
+  handlers:
+    - import_tasks: handlers/main.yml

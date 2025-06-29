@@ -1,0 +1,34 @@
+---
+- name: Copy files from bastion to remote server if not present
+  hosts: all
+  gather_facts: yes
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Check if files exist
+      stat:
+        path: "{{ destination_path }}/{{ item | basename }}"
+      register: file_stat
+      loop: "{{ files_to_copy }}"
+
+    - name: Template files if they don't exist
+      template:
+        src: "{{ item.item }}"
+        dest: "{{ destination_path }}/{{ item.item | basename }}"
+        mode: '0644'
+        backup: yes
+      loop: "{{ file_stat.results }}"
+      when:
+        - files_are_templates | default(false)
+        - not item.stat.exists
+
+    - name: Copy static files if they don't exist
+      copy:
+        src: "{{ item.item }}"
+        dest: "{{ destination_path }}/{{ item.item | basename }}"
+        mode: '0644'
+        backup: yes
+      loop: "{{ file_stat.results }}"
+      when:
+        - not (files_are_templates | default(false))
+        - not item.stat.exists

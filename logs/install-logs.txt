@@ -1,0 +1,173 @@
+[healthcheck@a0420pmgtansible01 ansible]$ ansible all -i inventory/inventory.yaml --list-hosts
+  hosts (8):
+    10.12.94.101
+    10.12.94.113
+    10.12.94.111
+    10.12.94.119
+    10.12.94.114
+    10.12.94.103
+    10.12.94.107
+    10.12.94.122
+
+[healthcheck@a0420pmgtansible01 ansible]$ ansible all -i inventory/inventory.yaml -m shell -a 'route -n | grep 10.2.64.8'
+10.12.94.101 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.119 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.113 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.111 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.114 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.103 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.107 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+10.12.94.122 | CHANGED | rc=0 >>
+10.2.64.8       10.12.94.97     255.255.255.255 UGH   101    0        0 ens4
+
+[healthcheck@a0420pmgtansible01 ansible]$ ansible-playbook -i inventory/inventory.yaml play-zabbix/deploy_zabbix.yml
+
+PLAY [Deploy Zabbix Agent] *********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+ok: [10.12.94.101]
+ok: [10.12.94.119]
+ok: [10.12.94.114]
+ok: [10.12.94.111]
+ok: [10.12.94.113]
+ok: [10.12.94.103]
+ok: [10.12.94.107]
+ok: [10.12.94.122]
+
+TASK [Check if Zabbix agent or agent2 is installed] ********************************************************************************************************************************************************
+[WARNING]: Consider using the yum, dnf or zypper module rather than running 'rpm'.  If you need to use command because yum, dnf or zypper is insufficient you can add 'warn: false' to this command task or
+set 'command_warnings=False' in ansible.cfg to get rid of this message.
+
+ok: [10.12.94.101]
+ok: [10.12.94.111]
+ok: [10.12.94.113]
+ok: [10.12.94.119]
+ok: [10.12.94.114]
+ok: [10.12.94.103]
+ok: [10.12.94.107]
+ok: [10.12.94.122]
+
+TASK [Set installation fact] *******************************************************************************************************************************************************************************
+ok: [10.12.94.101]
+ok: [10.12.94.113]
+ok: [10.12.94.111]
+ok: [10.12.94.119]
+ok: [10.12.94.114]
+ok: [10.12.94.103]
+ok: [10.12.94.107]
+ok: [10.12.94.122]
+
+TASK [Install Zabbix agent RPM] ****************************************************************************************************************************************************************************
+skipping: [10.12.94.101]
+skipping: [10.12.94.113]
+skipping: [10.12.94.111]
+skipping: [10.12.94.119]
+skipping: [10.12.94.114]
+skipping: [10.12.94.103]
+skipping: [10.12.94.107]
+skipping: [10.12.94.122]
+
+TASK [Remove RPM file after installation] ******************************************************************************************************************************************************************
+skipping: [10.12.94.101]
+skipping: [10.12.94.113]
+skipping: [10.12.94.111]
+skipping: [10.12.94.119]
+skipping: [10.12.94.114]
+skipping: [10.12.94.103]
+skipping: [10.12.94.107]
+skipping: [10.12.94.122]
+
+TASK [Check firewalld status] ******************************************************************************************************************************************************************************
+ok: [10.12.94.101]
+ok: [10.12.94.113]
+ok: [10.12.94.111]
+ok: [10.12.94.119]
+ok: [10.12.94.114]
+ok: [10.12.94.103]
+ok: [10.12.94.107]
+ok: [10.12.94.122]
+
+TASK [Open firewall port 10050 if firewalld is active] *****************************************************************************************************************************************************
+ok: [10.12.94.119]
+ok: [10.12.94.114]
+ok: [10.12.94.113]
+ok: [10.12.94.111]
+ok: [10.12.94.101]
+ok: [10.12.94.103]
+ok: [10.12.94.107]
+ok: [10.12.94.122]
+
+TASK [Backup existing Zabbix agent configuration] **********************************************************************************************************************************************************
+changed: [10.12.94.114]
+changed: [10.12.94.101]
+changed: [10.12.94.119]
+changed: [10.12.94.111]
+changed: [10.12.94.113]
+changed: [10.12.94.103]
+changed: [10.12.94.107]
+changed: [10.12.94.122]
+
+TASK [Deploy Zabbix agent configuration] *******************************************************************************************************************************************************************
+changed: [10.12.94.101]
+changed: [10.12.94.119]
+changed: [10.12.94.111]
+changed: [10.12.94.114]
+changed: [10.12.94.113]
+changed: [10.12.94.103]
+changed: [10.12.94.107]
+changed: [10.12.94.122]
+
+TASK [Ensure Zabbix agent service is enabled and running] **************************************************************************************************************************************************
+fatal: [10.12.94.101]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.119]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.111]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.113]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.114]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.103]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.107]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+fatal: [10.12.94.122]: FAILED! => {"changed": false, "msg": "Could not find the requested service zabbix-agent: host"}
+
+RUNNING HANDLER [Restart Zabbix Agent] *********************************************************************************************************************************************************************
+
+PLAY RECAP *************************************************************************************************************************************************************************************************
+10.12.94.101               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.103               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.107               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.111               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.113               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.114               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.119               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+10.12.94.122               : ok=7    changed=2    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+
+
+
+[healthcheck@a0420pmgtansible01 ansible]$ ansible all -i inventory/inventory.yaml -m shell -a 'systemctl restart zabbix-agent2'
+10.12.94.113 | CHANGED | rc=0 >>
+
+10.12.94.101 | CHANGED | rc=0 >>
+
+10.12.94.119 | CHANGED | rc=0 >>
+
+10.12.94.111 | CHANGED | rc=0 >>
+
+10.12.94.114 | CHANGED | rc=0 >>
+
+10.12.94.107 | CHANGED | rc=0 >>
+
+10.12.94.103 | CHANGED | rc=0 >>
+
+10.12.94.122 | CHANGED | rc=0 >>
