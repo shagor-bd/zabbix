@@ -24,7 +24,7 @@ This guide provides comprehensive instructions for installing, configuring, and 
         - [**For OpenStack Platform:**](#for-openstack-platform)
         - [**For VMware or RHEV Platforms:**](#for-vmware-or-rhev-platforms)
       - [✅ Summary](#-summary)
-    - [Install `zabbix-agent2` to Destination hosts using Ansible.](#install-zabbix-agent2-to-destination-hosts-using-ansible)
+    - [Install `zabbix-agent2` to Destination hosts using Ansible](#install-zabbix-agent2-to-destination-hosts-using-ansible)
     - [Manual Installation](#manual-installation)
   - [Some more configuration for Zabbix](#some-more-configuration-for-zabbix)
     - [PHP Configuration](#php-configuration)
@@ -56,7 +56,7 @@ This guide provides comprehensive instructions for installing, configuring, and 
 - **CPU**: 4 cores
 - **RAM**: 8GB
 - **Storage**: As per plan
-- **Network**: 
+- **Network**:
   - ens3 | 10.2.64.8 | O&M
   - ens4 | 10.18.248.26 | Service IP
   - VM Hosted in Management Zone.
@@ -66,7 +66,6 @@ This guide provides comprehensive instructions for installing, configuring, and 
 - **Database**: MySQL 8.0+
 - **Web Server**: Apache/2.4.62
 - **PHP**: PHP 8.0.30.
-
 
 ## Installation Methods
 
@@ -169,9 +168,9 @@ wget https://repo.zabbix.com/zabbix/7.2/release/rhel/8/noarch/zabbix-release-lat
 # RHEL 7
 wget https://repo.zabbix.com/zabbix/7.2/release/rhel/7/noarch/zabbix-release-latest-7.2.el7.noarch.rpm
 ```
-
+<!-- markdownlint-disable MD036 -->
 **Copy rpm to destination server**
-
+<!-- markdownlint-enable MD036 -->
 ```bash
 # Navigate to ansible directory
 cd ansible/
@@ -179,10 +178,9 @@ ansible-playbook -i inventory/inventory.yaml ansible-copy/copy-from-bastion-msg.
 ```
 
 [Detail Logs](./logs/copy-logs.txt)
-
-
+<!-- markdownlint-disable MD036 -->
 **Confirm files copied into destination server**
-
+<!-- markdownlint-enable MD036-->
 ```bash
 ansible all -i inventory/inventory.yaml  -m shell -a 'ls /tmp/zabbix*'
 ```
@@ -232,7 +230,7 @@ Our **Zabbix Server resides in the Management Zone**, so in order for **Zabbix A
 
 ##### **For VMware or RHEV Platforms:**
 
-* Static routes must be **manually configured on each host** to ensure management traffic (e.g., to the Zabbix server) is routed via the **Management Interface Gateway**.
+Static routes must be **manually configured on each host** to ensure management traffic (e.g., to the Zabbix server) is routed via the **Management Interface Gateway**.
 
 ---
 
@@ -242,7 +240,7 @@ Without these custom routes, the monitoring traffic will follow the default rout
 
 ---
 
-### Install `zabbix-agent2` to Destination hosts using Ansible.
+### Install `zabbix-agent2` to Destination hosts using Ansible
 <!-- markdownlint-disable MD036 -->
 **Check before run the deployment playbook**
 <!-- markdownlint-enable MD036 -->
@@ -292,7 +290,7 @@ sudo systemctl start zabbix-agent2
 
 ## Some more configuration for Zabbix
 
-**Web Interface Setup**
+-[ ] **Web Interface Setup**
 
 ### PHP Configuration
 

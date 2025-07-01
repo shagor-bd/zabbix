@@ -90,11 +90,11 @@ Our **Zabbix Server resides in the Management Zone**, so in order for **Zabbix A
 Without these custom routes, the monitoring traffic will follow the default route via the Service Interface, causing failure in Zabbix communication. Ensuring the correct routing configuration will enable successful monitoring via the Management Interface as intended.
 
 ---
-
+<!-- markdownlint-disable MD036 MD026-->
 ### Install `zabbix-agent2` to Destination hosts using Ansible.
-<!-- markdownlint-disable MD036 -->
+
 **Check before run the deployment playbook**
-<!-- markdownlint-enable MD036 -->
+<!-- markdownlint-enable MD036 MD026-->
 ```bash
 # Navigate to ansible directory
 cd /home/healthcheck/abdulaziz/ansible
